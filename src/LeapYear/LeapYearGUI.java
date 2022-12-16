@@ -10,21 +10,25 @@ public class LeapYearGUI extends JFrame {
     private JTextField tfYear;
     private JButton btnCheckYear;
     private JLabel inputYearLabel;
-    public LeapYearGUI() {
+    public LeapYearGUI() throws Exception{
         btnCheckYear.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent AE) {
 
+                try {
                     int year = Integer.parseInt(tfYear.getText());
                     if (year % 400 == 0 || (year % 4 == 0 && year % 100 != 0)) {
                         JOptionPane.showMessageDialog(panelmain, "Leap year");
                     } else {
                         JOptionPane.showMessageDialog(panelmain, "Not a leap year");
                     }
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(panelmain, "Invalid input");
+                }
             }
         });
     }
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception{
         LeapYearGUI app = new LeapYearGUI();
 
         app.setContentPane(app.panelmain);
