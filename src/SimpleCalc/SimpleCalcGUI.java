@@ -2,6 +2,8 @@ package SimpleCalc;
 
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class SimpleCalcGUI extends JFrame{
     private JPanel panel1;
@@ -11,7 +13,43 @@ public class SimpleCalcGUI extends JFrame{
     private JTextField tfNumber2;
     private JTextField lblResult;
 
-    public static void main(String[] args) {
+    public SimpleCalcGUI() {
+        cbOperations.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent AE) {
+
+                }
+
+        });
+        btnCompute.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent AE) {
+                    int result=0;
+                    int num1 = Integer.parseInt(tfNumber1.getText());
+                    int num2 = Integer.parseInt(tfNumber2.getText());
+
+                    if (cbOperations.getSelectedItem().equals("+")) {
+                        result=num1+num2;
+                        lblResult.setText(Integer.toString(result));
+
+                    } else if (cbOperations.getSelectedItem().equals("-")){
+                        result=num1-num2;
+                        lblResult.setText(Integer.toString(result));
+
+                    }else if (cbOperations.getSelectedItem().equals("*")){
+                        result=num1*num2;
+                        lblResult.setText(Integer.toString(result));
+
+                    }else if (cbOperations.getSelectedItem().equals("/")){
+                        result=num1/num2;
+                        lblResult.setText(Integer.toString(result));
+                    }
+
+            }
+        });
+        }
+
+        public static void main(String[] args) {
         SimpleCalcGUI app = new SimpleCalcGUI();
         app.setContentPane(app.panel1);
         app.setSize(700, 450);
