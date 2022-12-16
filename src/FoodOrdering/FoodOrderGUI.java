@@ -102,6 +102,7 @@ public class FoodOrderGUI extends JFrame {
         app.setVisible(true);
         app.setTitle("Food Ordering System");
 
+
     }
 }
 
