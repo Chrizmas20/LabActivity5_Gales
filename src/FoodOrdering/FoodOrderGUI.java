@@ -1,3 +1,4 @@
+
 package FoodOrdering;
 
 import javax.swing.*;
@@ -46,6 +47,7 @@ public class FoodOrderGUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent AE) {
 
+                try {
                     int count_food = 0;
                     double price = 0;
                     for (JCheckBox cb : food) {
@@ -71,7 +73,9 @@ public class FoodOrderGUI extends JFrame {
                             }
                         }
                     }
-
+                    if (count_food == 0) {
+                        throw new NoFoodSelection("Error! Please Select your Order(s)");
+                    }
                     int count_discount = 0;
                     for (JRadioButton rb : discount) {
                         if (rb.isSelected()) {
@@ -90,6 +94,12 @@ public class FoodOrderGUI extends JFrame {
                             }
                         }
                     }
+                    if (count_discount == 0) {
+                        throw new NoDiscount ("Error! Please Choose a Discount");
+                    }
+                } catch (NoFoodSelection | NoDiscount e) {
+                    System.out.println(e.getMessage());
+                }
             }
         });
     }
@@ -102,9 +112,21 @@ public class FoodOrderGUI extends JFrame {
         app.setVisible(true);
         app.setTitle("Food Ordering System");
 
-
     }
 }
+class NoFoodSelection extends Exception{
+    public NoFoodSelection (String str){
+        super (str);
+    }
+}
+class NoDiscount extends Exception{
+    public NoDiscount (String str){
+        super (str);
+    }
+}
+
+
+
 
 
 
