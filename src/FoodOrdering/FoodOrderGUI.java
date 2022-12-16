@@ -91,6 +91,8 @@ public class FoodOrderGUI extends JFrame {
                             } else if (rb.getText().equals("15% Off")) {
                                 JOptionPane.showMessageDialog(panel1, "The total price is Php " + String.format("%.2f", price * .85));
                                 count_discount++;
+                            }else if(rb.getText().equals("None")&& equals("5% Off")&& equals("10% Off")&& equals("15% Off")){
+                                JOptionPane.showMessageDialog(panel1, "Too many discounts selected");
                             }
                         }
                     }
@@ -98,7 +100,7 @@ public class FoodOrderGUI extends JFrame {
                         throw new NoDiscount ("Error! Please Choose a Discount");
                     }
                 } catch (NoFoodSelection | NoDiscount e) {
-                    System.out.println(e.getMessage());
+                    JOptionPane.showMessageDialog(panel1, e.getMessage());
                 }
             }
         });
@@ -121,6 +123,11 @@ class NoFoodSelection extends Exception{
 }
 class NoDiscount extends Exception{
     public NoDiscount (String str){
+        super (str);
+    }
+}
+class ManyDiscount extends Exception{
+    public ManyDiscount (String str){
         super (str);
     }
 }
