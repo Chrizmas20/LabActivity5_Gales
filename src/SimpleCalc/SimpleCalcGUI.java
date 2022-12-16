@@ -1,6 +1,6 @@
 package SimpleCalc;
 
-
+import java.util.*;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,7 +13,7 @@ public class SimpleCalcGUI extends JFrame{
     private JTextField tfNumber2;
     private JTextField lblResult;
 
-    public SimpleCalcGUI() {
+    public SimpleCalcGUI() throws Exception{
         cbOperations.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent AE) {
@@ -24,6 +24,7 @@ public class SimpleCalcGUI extends JFrame{
         btnCompute.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent AE) {
+                try {
                     int result=0;
                     int num1 = Integer.parseInt(tfNumber1.getText());
                     int num2 = Integer.parseInt(tfNumber2.getText());
@@ -44,12 +45,14 @@ public class SimpleCalcGUI extends JFrame{
                         result=num1/num2;
                         lblResult.setText(Integer.toString(result));
                     }
-
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(panel1, "ERROR!");
+                }
             }
         });
         }
 
-        public static void main(String[] args) {
+        public static void main(String[] args) throws Exception{
         SimpleCalcGUI app = new SimpleCalcGUI();
         app.setContentPane(app.panel1);
         app.setSize(700, 450);
